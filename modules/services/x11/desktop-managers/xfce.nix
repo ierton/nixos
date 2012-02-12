@@ -38,9 +38,17 @@ in
             # Ugly.
             export GST_PLUGIN_PATH=${config.system.path}/lib
 
+            # Run gvfs-fuse-daemon to access remote filesystems via fuse
+            ${pkgs.xfce.gvfs}/libexec/gvfs-fuse-daemon ~/.gvfs -o allow_root
+
             exec ${pkgs.stdenv.shell} ${pkgs.xfce.xfceutils}/etc/xdg/xfce4/xinitrc
           '';
       };
+
+    boot.kernelModules =
+      [
+        "fuse"
+      ];
 
     environment.systemPackages =
       [ pkgs.gtk # To get GTK+'s themes.
