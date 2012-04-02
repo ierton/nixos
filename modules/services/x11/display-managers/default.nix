@@ -104,6 +104,10 @@ let
           fi
       fi
 
+      if test -f ~/.xprofile; then
+          . ~/.xprofile
+      fi
+
       # The session type is "<desktop-manager> + <window-manager>", so
       # extract those.
       windowManager="''${sessionType##* + }"
