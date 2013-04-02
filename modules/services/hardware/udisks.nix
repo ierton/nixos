@@ -29,16 +29,16 @@ with pkgs.lib;
 
   config = mkIf config.services.udisks.enable {
 
-    environment.systemPackages = [ pkgs.udisks ];
+    environment.systemPackages = [ pkgs.udisks2 ];
 
-    services.dbus.packages = [ pkgs.udisks ];
+    services.dbus.packages = [ pkgs.udisks2 ];
 
     system.activationScripts.udisks =
       ''
-        mkdir -m 0755 -p /var/lib/udisks
+        mkdir -m 0755 -p /var/lib/udisks2
       '';
 
-    services.udev.packages = [ pkgs.udisks ];
+    services.udev.packages = [ pkgs.udisks2 ];
   };
 
 }
